@@ -1,0 +1,15 @@
+version: '3'
+services:
+  eureka:
+    build: registry-server
+    ports:
+      - "8761:8761"
+  config:
+    build: config-server
+    ports:
+      - "8888:8888"
+  order-service:
+    build: order-service
+    depends_on:
+      - config
+      - eureka
